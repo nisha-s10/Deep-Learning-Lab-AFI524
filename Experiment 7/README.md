@@ -96,7 +96,7 @@ Measured total training duration.
 | Vanilla LSTM           | 0.0189     |
 | Bahdanau Attention     | 0.0230     | 
 | Luong Attention        | 0.0216     |
-| Transformer            | 0.0292     |
+| Transformer            | 0.0347     |
 
 > Transformer generally achieves higher BLEU due to parallel self-attention and better long-range dependency modeling.
 
