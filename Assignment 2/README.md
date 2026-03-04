@@ -118,7 +118,13 @@ This indicates **overfitting**, where the model memorizes training data but fail
 
 ### Baseline Training Curves
 
-![Baseline Accuracy and Loss](baseline_accuracy.png, baseline_loss.png)
+### Accuracy
+
+![Baseline Accuracy](baseline_accuracy.png)
+
+### Loss
+
+![Baseline Loss](baseline_loss.png)
 
 ---
 
@@ -154,61 +160,104 @@ The confusion matrix visualizes prediction performance on the test dataset.
 
 # Error Analysis
 
-Misclassified examples were analyzed to understand model limitations.
+## Misclassified Review Examples
+
+To better understand model limitations, several misclassified examples from the test dataset were analyzed.
 
 ### Example 1
 
-Review snippet:
-`The movie had great actors but the story was extremely boring.`
+Review Snippet:
+`i generally love this type of movie however this time i found myself wanting to kick the screen ...`
 
+True Label: **Negative (0)**  
+Predicted Probability: **0.8993**
 
-True label: **Positive**  
-Predicted probability: **0.32**
+Explanation:
 
-Reason:
-
-The review contains mixed sentiment words such as *great actors* and *boring*, which confused the model.
+The review starts with positive wording such as *"i generally love this type of movie"* which may have influenced the model to predict a positive sentiment, even though the later part of the sentence expresses dissatisfaction.
 
 ---
 
 ### Example 2
 
-Review snippet:
-`I expected a lot from this movie but it turned out to be disappointing.`
+Review Snippet:
 
+`i'm absolutely disgusted this movie isn't being sold all who love this movie should email disney ...`
 
-True label: **Negative**  
-Predicted probability: **0.61**
+True Label: **Positive (1)**  
+Predicted Probability: **0.1068**
 
-Reason:
+Explanation:
 
-The model incorrectly focused on neutral words rather than the negative sentiment.
+The presence of the word *"disgusted"* likely misled the model into predicting a negative sentiment, even though the overall review expresses strong appreciation for the movie.
+
+---
+
+### Example 3
+
+Review Snippet:
+`originally supposed to be just a part of a huge epic the year depicting the revolution ...`
+
+True Label: **Positive (1)**  
+Predicted Probability: **0.2727**
+
+Explanation:
+
+This review contains neutral descriptive language rather than strong sentiment words, making it difficult for the model to determine the correct sentiment.
+
+---
+
+### Example 4
+
+Review Snippet:
+`the emperor's richard dog is to joan fontaine dog however when bing crosby arrives ...`
+
+True Label: **Negative (0)**  
+Predicted Probability: **0.8452**
+
+Explanation:
+
+The review contains many proper nouns and context-specific references which may not strongly indicate sentiment, causing the model to misinterpret the tone.
+
+---
+
+### Example 5
+
+Review Snippet:
+`hollywood had a long love affair with bogus arabian nights tales but few of these products have ...`
+
+True Label: **Negative (0)**  
+Predicted Probability: **0.9038**
+
+Explanation:
+
+Although the review contains criticism of certain movie themes, the phrase structure may include words like *love* that could bias the model toward predicting positive sentiment.
 
 ---
 
 # Analysis Questions
 
-### Why do Simple RNNs struggle with long sequences?
+### Why do Simple RNNs struggle with long sequences compared to LSTMs/GRUs?
 
-Simple RNNs suffer from the **vanishing gradient problem**, which limits their ability to remember long-term dependencies. LSTMs and GRUs solve this problem using gating mechanisms.
-
----
-
-### What does padding/truncation affect?
-
-Padding ensures fixed-length sequences for batch processing. However, truncation may remove important context from long reviews.
+In my experiment, I observed that Simple RNNs struggle with long sequences because of the vanishing gradient problem. When the sequence becomes long, the model gradually forgets information from earlier words while training. This makes it difficult for the network to capture long-term dependencies in text. In contrast, LSTMs and GRUs use gating mechanisms that help retain important information for longer sequences. Because of this, they usually perform better for long text inputs.
 
 ---
 
-### Why might training accuracy be high but validation accuracy low?
+### What does padding/truncation change about what the model can learn?
 
-This indicates **overfitting**, where the model memorizes training data but cannot generalize to unseen examples.
+Padding and truncation are used to make all input sequences the same length so that the model can process them in batches. Padding adds extra tokens to shorter sequences, while truncation removes words from longer sequences. In my case, this helped standardize the input length for training. However, truncation may remove important parts of long reviews, which can affect prediction accuracy. Padding may also add non-informative tokens that the model must learn to ignore.
 
 ---
 
-### Which improvement helped most?
+### If your training accuracy is high but validation is low, what likely happened?
 
-The **Bidirectional SimpleRNN** helped the most because it allows the model to analyze sequences in both directions, improving context understanding.
+If training accuracy is high but validation accuracy is low, it usually means the model is overfitting. In this case, the model learns patterns specific to the training data but fails to generalize to new unseen data. I observed similar behavior in the baseline model where training accuracy improved but validation performance remained poor. This indicates that the model memorized the training data instead of learning general sentiment patterns.
+
+---
+
+### Which improvement helped most and why?
+
+In my model, the **Bidirectional SimpleRNN** helped the most. It processes the text in both forward and backward directions, allowing the model to capture more context from the sentence. This is useful for sentiment analysis because the meaning of a sentence may depend on words that appear later in the review. By learning context from both directions, the improved model was able to achieve better accuracy compared to the baseline model.
 
 ---
 
