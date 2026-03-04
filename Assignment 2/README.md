@@ -154,7 +154,7 @@ The improved model significantly outperforms the baseline model.
 
 The confusion matrix visualizes prediction performance on the test dataset.
 
-![Confusion Matrix](images/confusion_matrix.png)
+![Confusion Matrix](confusion_matrix.png)
 
 ---
 
