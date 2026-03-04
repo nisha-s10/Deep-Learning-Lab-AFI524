@@ -118,7 +118,7 @@ This indicates **overfitting**, where the model memorizes training data but fail
 
 ### Baseline Training Curves
 
-![Baseline Accuracy and Loss](baseline_accuracy.png)
+![Baseline Accuracy and Loss](baseline_accuracy.png, baseline_loss.png)
 
 ---
 
