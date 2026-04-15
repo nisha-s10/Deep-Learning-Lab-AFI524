@@ -475,6 +475,5 @@ This experiment provided practical experience with generative models, adversaria
 
 ## 👩‍💻 Author
 
-**Nisha Singh**
-**B.Tech — Deep Learning Lab**
-**Experiment 9: Generative Adversarial Networks**
+Nisha Singh  
+M.Tech AI / Deep Learning Lab
