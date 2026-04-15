@@ -319,6 +319,5 @@ This experiment highlights the importance of probabilistic modeling and structur
 
 ## 👩‍💻 Author
 
-**Nisha Singh**
-**M.Tech — Deep Learning Lab**
-**Experiment 8: Autoencoders and Variational Autoencoders**
+Nisha Singh  
+M.Tech AI / Deep Learning Lab
