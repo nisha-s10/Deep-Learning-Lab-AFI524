@@ -1,53 +1,43 @@
-# Experiment 8: Autoencoders and Variational Autoencoders (VAE) with Latent Space Analysis and Model Comparison
-
-## Overview
-
-This experiment focuses on implementing and analyzing **Autoencoders** and **Variational Autoencoders (VAE)** using the **Fashion-MNIST** dataset.
-The goal is to study latent representations, reconstruction performance, generative capability, and the effect of different configurations such as latent dimensions, loss functions, and optimizers.
-
-Autoencoders learn deterministic compressed representations, whereas Variational Autoencoders learn probabilistic latent distributions that enable smooth data generation and interpolation.
+# 🧪 Experiment 8: Autoencoders and Variational Autoencoders (VAE) with Latent Space Analysis and Model Comparison
 
 ---
 
-## Objectives
+## 📌 Objective
 
-The main objectives of this experiment are:
+The objective of this experiment is to implement and analyze **Autoencoders** and **Variational Autoencoders (VAE)** using the **Fashion-MNIST** dataset.
 
-* Implement **Autoencoder** and **Variational Autoencoder (VAE)** architectures using PyTorch
-* Learn meaningful latent representations of image data
-* Compare deterministic and probabilistic generative models
-* Analyze reconstruction quality and latent space structure
-* Study the impact of:
+This experiment focuses on:
 
-  * Latent space dimensionality
-  * Loss functions
-  * Optimizers
-* Perform latent space interpolation and visualization
-* Track training and evaluation metrics
-* Deploy trained models for reproducibility
+* Learning meaningful latent representations
+* Comparing deterministic and probabilistic models
+* Evaluating reconstruction and generation performance
+* Studying the effect of latent dimensions, loss functions, and optimizers
+* Visualizing latent space structure and smooth transitions
+
+Autoencoders learn deterministic compressed representations, whereas Variational Autoencoders learn probabilistic latent distributions enabling smooth data generation.
 
 ---
 
-## Dataset
+## 📂 Dataset
 
 **Fashion-MNIST**
 
-The dataset consists of grayscale images of clothing items such as:
+The dataset contains grayscale images of clothing items such as:
 
-* Shirts
-* T-shirts
-* Shoes
-* Bags
-* Sandals
-* Dresses
+* 👕 Shirts
+* 👚 T-shirts
+* 👟 Shoes
+* 👜 Bags
+* 👡 Sandals
+* 👗 Dresses
 
-Each image is:
+### Dataset Details
 
-* Size: **28 × 28 pixels**
+* Image Size: **28 × 28 pixels**
 * Format: **Grayscale**
-* Total samples: **70,000**
+* Total Samples: **70,000**
 
-Dataset split:
+### Dataset Split
 
 * **80% Training**
 * **10% Validation**
@@ -55,7 +45,7 @@ Dataset split:
 
 ---
 
-## Preprocessing
+## ⚙️ Preprocessing
 
 The following preprocessing steps were applied:
 
@@ -65,60 +55,68 @@ The following preprocessing steps were applied:
 
 ---
 
-## Model Architectures
-
-### Autoencoder
-
-The Autoencoder consists of:
-
-**Encoder:**
-
-* Fully connected layers
-* Maps input image to latent vector
-
-**Decoder:**
-
-* Mirrors encoder architecture
-* Reconstructs image from latent vector
-
-**Loss Functions Used:**
-
-* Mean Squared Error (MSE)
-* Binary Cross Entropy (BCE)
+## 🏗️ Model Architectures
 
 ---
 
-### Variational Autoencoder (VAE)
+### 1️⃣ Autoencoder
 
-The VAE extends the Autoencoder by learning a probabilistic latent representation.
+The Autoencoder consists of two main components:
 
-Key components:
+#### Encoder
 
-* Mean (μ) and variance (σ) estimation
+* Fully connected neural network layers
+* Maps input image to latent vector
+
+#### Decoder
+
+* Mirrors the encoder architecture
+* Reconstructs image from latent vector
+
+#### Loss Functions Used
+
+* Mean Squared Error (**MSE**)
+* Binary Cross Entropy (**BCE**)
+
+---
+
+### 2️⃣ Variational Autoencoder (VAE)
+
+The Variational Autoencoder extends the Autoencoder by learning a **probabilistic latent distribution**.
+
+#### Key Components
+
+* Mean (**μ**) and variance (**σ**) estimation
 * Reparameterization trick
 * KL Divergence regularization
 
-**Reparameterization Equation:**
+#### Reparameterization Equation
 
+```
 z = μ + σ · ε
 ε ~ N(0,1)
+```
 
-**Loss Function:**
+#### Loss Function
 
+```
 Total Loss = Reconstruction Loss + KL Divergence
+```
 
 ---
 
-## Experiments Performed
+## 🧪 Experiments Performed
 
-### 1. Latent Space Study
+---
 
-Models were trained with different latent dimensions:
+### 1️⃣ Latent Space Study
 
-* 2
-* 8
-* 16
-* 32
+Models were trained using different latent dimensions:
+
+* **2**
+* **8**
+* **16**
+* **32**
 
 Analysis included:
 
@@ -128,7 +126,7 @@ Analysis included:
 
 ---
 
-### 2. Latent Space Visualization
+### 2️⃣ Latent Space Visualization
 
 The latent space was visualized using:
 
@@ -140,11 +138,13 @@ This helped evaluate how well the models learned meaningful representations.
 
 ---
 
-### 3. Latent Space Interpolation
+### 3️⃣ Latent Space Interpolation
 
 Interpolation was performed between two latent vectors:
 
+```
 z_interp = (1 − α)z₁ + αz₂
+```
 
 This demonstrated:
 
@@ -154,12 +154,12 @@ This demonstrated:
 
 ---
 
-### 4. Loss Function Comparison
+### 4️⃣ Loss Function Comparison
 
 The following loss functions were evaluated:
 
-* Binary Cross Entropy (BCE)
-* Mean Squared Error (MSE)
+* Binary Cross Entropy (**BCE**)
+* Mean Squared Error (**MSE**)
 
 Comparison metrics:
 
@@ -169,13 +169,13 @@ Comparison metrics:
 
 ---
 
-### 5. Optimizer Comparison
+### 5️⃣ Optimizer Comparison
 
 The models were trained using:
 
-* SGD
-* RMSprop
-* Adam
+* **SGD**
+* **RMSprop**
+* **Adam**
 
 Comparison metrics:
 
@@ -185,7 +185,7 @@ Comparison metrics:
 
 ---
 
-### 6. Model Evaluation
+### 6️⃣ Model Evaluation
 
 Models were evaluated based on:
 
@@ -197,7 +197,7 @@ Models were evaluated based on:
 
 ---
 
-## Key Observations
+## 📊 Key Observations
 
 * Autoencoder produced sharper reconstructions
 * VAE generated smoother transitions between images
@@ -207,7 +207,7 @@ Models were evaluated based on:
 
 ---
 
-## Expected Outcomes Achieved
+## 🎯 Expected Outcomes Achieved
 
 * Better reconstruction sharpness in Autoencoder
 * Better generative capability and smoother transitions in VAE
@@ -217,7 +217,7 @@ Models were evaluated based on:
 
 ---
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 * Python
 * PyTorch
@@ -230,7 +230,7 @@ Models were evaluated based on:
 
 ---
 
-## Repository Structure
+## 📁 Repository Structure
 
 ```
 experiment-8/
@@ -257,44 +257,44 @@ experiment-8/
 
 ---
 
-## How to Run the Experiment
+## ▶️ How to Run the Experiment
 
-1. Clone the repository
+### Step 1 — Clone the Repository
 
 ```
 git clone https://github.com/your-username/experiment-8.git
 ```
 
-2. Install dependencies
+### Step 2 — Install Dependencies
 
 ```
 pip install torch torchvision matplotlib numpy wandb huggingface_hub
 ```
 
-3. Run the notebook
+### Step 3 — Run the Notebook
 
 ```
-Open experiment-8.ipynb
+Open experiment-8.ipynb  
 Run all cells
 ```
 
 ---
 
-## Submission Links
+## 🔗 Submission Links
 
-GitHub Repository:
+### GitHub Repository
 
 ```
 Add your GitHub repository link here
 ```
 
-Weights & Biases Dashboard:
+### Weights & Biases Dashboard
 
 ```
 Add your W&B project link here
 ```
 
-Hugging Face Model Repository:
+### Hugging Face Model Repository
 
 ```
 Add your Hugging Face model link here
@@ -302,9 +302,23 @@ Add your Hugging Face model link here
 
 ---
 
-## Author
+## 🏁 Conclusion
 
-**Name:** Nisha Singh
-**Course:** M.Tech
-**Subject:** Deep Learning
-**Experiment:** Autoencoders and Variational Autoencoders
+The implementation of **Autoencoder** and **Variational Autoencoder (VAE)** successfully demonstrated the ability to learn meaningful latent representations from the Fashion-MNIST dataset.
+
+Key findings include:
+
+* Autoencoder achieved strong reconstruction performance
+* VAE provided smoother latent space transitions and generative capability
+* Adam optimizer showed stable and efficient convergence
+* Latent dimension significantly affected reconstruction quality
+
+This experiment highlights the importance of probabilistic modeling and structured latent representations in modern deep learning systems.
+
+---
+
+## 👩‍💻 Author
+
+**Nisha Singh**
+**M.Tech — Deep Learning Lab**
+**Experiment 8: Autoencoders and Variational Autoencoders**
